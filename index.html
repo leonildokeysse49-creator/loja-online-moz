@@ -1,38 +1,285 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" data-bs-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <title>A carregar Painel Admin...</title>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loja Online — Compre em Moçambique</title>
+  <meta name="description" content="Loja online multi-categorias em Moçambique. Moda, tecnologia, acessórios e casa. Pague por M-Pesa, e-Mola ou na entrega." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  
-  <!-- Teus Scripts (com ../ porque estamos dentro da pasta admin) -->
-  <script src="../assets/js/config.js"></script>
-  <script src="../assets/js/firebase.js"></script>
+  <!-- CSS DA LOJA -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/loja.css" />
+  <link rel="stylesheet" href="assets/css/formularios.css" /> <!-- ADICIONADO PARA INPUTS PRO -->
 </head>
-<body class="bg-light d-flex align-items-center justify-content-center" style="height: 100vh; font-family: sans-serif;">
-  <div class="text-center">
-    <!-- Ícone de loading simples -->
-    <div style="font-size: 3rem; color: #2563eb; margin-bottom: 15px;">⏳</div>
-    <h4 style="color: #0f172a;">A verificar permissões...</h4>
-    <p style="color: #64748b; font-size: 0.9rem;">Aguarda um momento.</p>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center py-2 small">
+      <div class="d-flex gap-3 flex-wrap">
+        <a href="tel:+258853217149" class="text-decoration-none text-reset"><i class="fa-solid fa-phone me-1"></i> 853 217 149</a>
+        <a href="mailto:Leonildokeysse49@gmail.com" class="text-decoration-none text-reset"><i class="fa-solid fa-envelope me-1"></i> Leonildokeysse49@gmail.com</a>
+      </div>
+      <div class="d-flex gap-3 flex-wrap">
+        <span><i class="fa-solid fa-location-dot me-1"></i> Maputo, Moçambique</span>
+        <a href="https://wa.me/258853217149" target="_blank" rel="noopener" class="text-decoration-none text-reset"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp</a>
+      </div>
+    </div>
   </div>
 
-  <script>
-    // O Firebase vai verificar se existe uma sessão ativa
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        // Se estiver logado, vai direto para o dashboard
-        window.location.href = "dashboard.html";
-      } else {
-        // Se não, vai para o login do admin
-        window.location.href = "login.html";
-      }
-    });
-  </script>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
+    <div class="container">
+      <a class="navbar-brand fw-bolder d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-bag-shopping"></i></span>
+        <span>Loja <span class="text-primary">Online</span></span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="categorias.html">Categorias</a></li>
+          <li class="nav-item"><a class="nav-link" href="produtos.html">Produtos</a></li>
+          <li class="nav-item"><a class="nav-link" href="promocoes.html">Promoções</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        
+        <!-- BARRA DE PESQUISA CORRIGIDA -->
+        <form class="d-flex flex-grow-1 mx-lg-4 my-2 my-lg-0" style="max-width: 350px;" role="search" action="pesquisa.html" method="get">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+            <input class="form-control border-start-0 ps-0" type="search" name="q" placeholder="Pesquisar..." />
+          </div>
+        </form>
+
+        <div class="d-flex align-items-center gap-2">
+          <!-- ÁREA DINÂMICA DE LOGIN -->
+          <div id="navbar-user-area" class="d-flex align-items-center">
+            <a href="conta/login.html" class="btn btn-outline-secondary btn-icon">
+              <i class="fa-regular fa-user"></i> <span class="d-none d-lg-inline ms-1">Entrar</span>
+            </a>
+          </div>
+
+          <a href="acompanhar-encomenda.html" class="btn btn-outline-secondary btn-icon d-none d-lg-inline-flex"><i class="fa-solid fa-truck-fast"></i></a>
+          <a href="carrinho.html" class="btn btn-primary btn-icon position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge" id="carrinho-badge">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <span class="badge-pill mb-3"><i class="fa-solid fa-bolt me-1"></i> Entregas em Maputo e arredores</span>
+          <h1 class="display-4 fw-bolder lh-sm mb-3">Compre em Moçambique<br />com <span class="text-primary">confiança</span>.</h1>
+          <p class="lead text-secondary mb-4">Moda, tecnologia, acessórios e casa — com stock em tempo real e pagamento por M-Pesa, e-Mola ou na entrega.</p>
+          
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <a href="produtos.html" class="btn btn-primary btn-lg px-4"><i class="fa-solid fa-bag-shopping me-2"></i> Comprar Agora</a>
+            <a href="promocoes.html" class="btn btn-outline-danger btn-lg px-4"><i class="fa-solid fa-fire me-2"></i> Ver Ofertas</a>
+          </div>
+
+          <div class="d-flex flex-wrap gap-4 small text-muted mt-4">
+            <span><i class="fa-solid fa-circle-check text-success me-1"></i> Compra 100% Segura</span>
+            <span><i class="fa-solid fa-circle-check text-success me-1"></i> Pagamento Local</span>
+          </div>
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="hero-card">
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="hero-mini-card">
+                  <i class="fa-solid fa-mobile-screen-button"></i>
+                  <strong>Telemóveis</strong>
+                  <small>a partir de 1.990 MZN</small>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="hero-mini-card">
+                  <i class="fa-solid fa-shirt"></i>
+                  <strong>Moda</strong>
+                  <small>novidades toda semana</small>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="hero-mini-card">
+                  <i class="fa-solid fa-watch"></i>
+                  <strong>Acessórios</strong>
+                  <small>relógios e óculos</small>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="hero-mini-card">
+                  <i class="fa-solid fa-couch"></i>
+                  <strong>Casa</strong>
+                  <small>decoração e mais</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust-bar">
+    <div class="container">
+      <div class="row g-3 text-center text-md-start">
+        <div class="col-md-3">
+          <div class="trust-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div><strong>Entrega Rápida</strong><small>Custo definido antes de confirmares</small></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="trust-item">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <div><strong>M-Pesa e e-Mola</strong><small>Pagamento simples e local</small></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="trust-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div><strong>Compra Segura</strong><small>Validação no servidor</small></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="trust-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            <div><strong>Apoio no WhatsApp</strong><small>853 217 149</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section class="py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
+        <div>
+          <h2 class="section-title">Categorias em Destaque</h2>
+          <p class="text-muted mb-0">Explora por tipo de produto.</p>
+        </div>
+        <a href="categorias.html" class="btn btn-outline-primary">Ver todas <i class="fa-solid fa-arrow-right ms-1"></i></a>
+      </div>
+      <div class="row g-4" id="grelha-categorias">
+        <!-- JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER PROMOÇÃO -->
+  <section class="py-4">
+    <div class="container">
+      <div class="bg-danger rounded-4 p-4 text-white text-center shadow-sm" data-aos="zoom-in" style="background: linear-gradient(90deg, #dc2626, #b91c1c) !important;">
+        <h3 class="fw-bold mb-1"><i class="fa-solid fa-fire me-2"></i> Ofertas da Semana!</h3>
+        <p class="mb-0">Descontos incríveis em produtos selecionados. Stock limitado.</p>
+        <a href="promocoes.html" class="btn btn-light text-danger fw-bold mt-3 px-4">Aproveitar Agora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUTOS -->
+  <section class="py-5 bg-white border-top border-bottom">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
+        <div>
+          <h2 class="section-title">Mais Vendidos</h2>
+          <p class="text-muted mb-0">As escolhas favoritas dos nossos clientes.</p>
+        </div>
+        <a href="produtos.html" class="btn btn-outline-primary">Ver catálogo <i class="fa-solid fa-arrow-right ms-1"></i></a>
+      </div>
+      <div class="row g-4" id="grelha-produtos">
+        <!-- JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="brand-mark"><i class="fa-solid fa-bag-shopping"></i></span>
+            <span class="fw-bolder fs-5 text-white">Loja Online</span>
+          </div>
+          <p class="text-white-50 small mb-3">Loja multi-categorias em Moçambique. Preços em MZN. Pagamento por M-Pesa, e-Mola ou na entrega.</p>
+          <div class="d-flex gap-2">
+            <a href="https://wa.me/258853217149" target="_blank" rel="noopener" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:Leonildokeysse49@gmail.com" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
+            <a href="tel:+258853217149" class="social-btn"><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white text-uppercase small fw-bold mb-3">Loja</h6>
+          <ul class="list-unstyled footer-links">
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="categorias.html">Categorias</a></li>
+            <li><a href="promocoes.html">Promoções</a></li>
+            <li><a href="sobre.html">Sobre nós</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white text-uppercase small fw-bold mb-3">Ajuda</h6>
+          <ul class="list-unstyled footer-links">
+            <li><a href="ajuda.html">Central de ajuda</a></li>
+            <li><a href="acompanhar-encomenda.html">Acompanhar encomenda</a></li>
+            <li><a href="cancelamento.html">Cancelamentos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="text-white text-uppercase small fw-bold mb-3">Contacto</h6>
+          <ul class="list-unstyled footer-contact">
+            <li><i class="fa-solid fa-phone"></i><a href="tel:+258853217149">853 217 149</a></li>
+            <li><i class="fa-solid fa-envelope"></i><a href="mailto:Leonildokeysse49@gmail.com">Leonildokeysse49@gmail.com</a></li>
+            <li><i class="fa-solid fa-location-dot"></i><span>Maputo, Moçambique</span></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary opacity-25 my-4" />
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 small text-white-50">
+        <div>© <span id="ano"></span> Loja Online. Todos os direitos reservados.</div>
+        <div class="d-flex gap-3">
+          <a href="admin/login.html" class="text-decoration-none text-white-50">Admin</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/firebase.js"></script>
+  <script src="assets/js/dados-demo.js"></script>
+  <script src="assets/js/utilitarios.js"></script>
+  <script src="assets/js/autenticacao.js"></script>
+  <script src="assets/js/categorias.js"></script>
+  <script src="assets/js/produtos.js"></script>
+  <script src="assets/js/carrinho.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
