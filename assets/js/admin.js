@@ -2,7 +2,6 @@
 // AUTENTICAÇÃO DO ADMIN (FIREBASE + ROLES)
 // ==========================================
 
-// Verifica se o utilizador logado tem permissão de Staff/Admin
 async function protegerAdmin() {
   return new Promise((resolve, reject) => {
     auth.onAuthStateChanged(async (user) => {
@@ -14,15 +13,12 @@ async function protegerAdmin() {
       }
 
       try {
-        // Lê a role (função) do utilizador na base de dados
         const doc = await db.collection("users").doc(user.uid).get();
         const role = doc.exists ? doc.data().role : (user.email === "admin@loja.co.mz" ? "admin" : "cliente");
 
-        // Se for da equipa, deixa entrar
         if (["admin", "gestor_catalogo", "gestor_stock", "operador", "entregador"].includes(role)) {
           resolve();
         } else {
-          // Se for um cliente a tentar entrar no admin, bloqueia
           alert("Acesso restrito à equipa da loja.");
           auth.signOut();
           const isSubpasta = window.location.pathname.split("/admin/")[1]?.includes("/");
@@ -37,16 +33,24 @@ async function protegerAdmin() {
   });
 }
 
-// Termina a sessão no Firebase e redireciona
 function terminarSessaoAdmin() {
   auth.signOut().then(() => {
     window.location.href = "../login.html";
   });
 }
 
-function renderizarSidebarAdmin() {
+async function renderizarSidebarAdmin() {
   const alvo = document.getElementById("admin-sidebar");
   if (!alvo) return;
+
+  // Tenta ler o nome da loja da base de dados para ficar dinâmico
+  let nomeLoja = "Fashion Key";
+  try {
+    const confDoc = await db.collection("settings").doc("geral").get();
+    if (confDoc.exists && confDoc.data().nome) {
+      nomeLoja = confDoc.data().nome;
+    }
+  } catch (e) { console.log("Usando nome padrão"); }
 
   const path = window.location.pathname;
   let ativo = "";
@@ -81,7 +85,7 @@ function renderizarSidebarAdmin() {
     { cat: "Sistema", href: "suporte/index.html", icone: "fa-headset", label: "Suporte", id: "suporte" }
   ];
 
-  let html = `<a href="${caminhoBase}dashboard.html" class="brand"><i class="fa-solid fa-bag-shopping"></i> Admin</a><div class="admin-nav">`;
+  let html = `<a href="${caminhoBase}dashboard.html" class="brand"><i class="fa-solid fa-key"></i> ${nomeLoja} <small class="fs-6 fw-normal ms-1">Admin</small></a><div class="admin-nav">`;
   let catAtual = "";
   
   links.forEach(l => {
@@ -101,16 +105,13 @@ function renderizarSidebarAdmin() {
 
 // MOTOR CENTRAL
 async function inicializarAdmin() {
-  console.log("🔄 A verificar permissões de Admin...");
-  
   try {
     await protegerAdmin(); 
-    console.log("✅ Acesso autorizado. A carregar interface...");
   } catch (e) {
     return; 
   }
 
-  renderizarSidebarAdmin();
+  await renderizarSidebarAdmin(); // Agora com await porque vai buscar o nome da loja
   
   const path = window.location.pathname;
 
@@ -131,9 +132,9 @@ async function inicializarAdmin() {
   else if (path.includes("configuracoes/geral.html")) inicializarAdminConfigGeral();
 }
 
-// ... (A PARTIR DAQUI, O RESTO DO TEU FICHEIRO PERMANECE IGUAL) ...
-// (Mantive todas as funções de produtos, categorias, stock, encomendas, etc., tal como estavam)
-
+// ==========================================
+// PRODUTOS
+// ==========================================
 async function carregarCategoriasSelect() {
   const select = document.getElementById("prod-categoria");
   if (!select) return;
@@ -290,6 +291,9 @@ async function apagarProduto(id) {
   } catch (err) { alert("Erro ao apagar."); }
 }
 
+// ==========================================
+// CATEGORIAS E SUBCATEGORIAS
+// ==========================================
 async function inicializarAdminCategorias() {
   const tbody = document.getElementById("tabela-categorias");
   if (!tbody) return;
@@ -429,6 +433,9 @@ async function apagarSubcategoria(catId, index) {
   } catch (err) { alert("Erro ao apagar."); }
 }
 
+// ==========================================
+// DASHBOARD, ENCOMENDAS, STOCK, ENTREGAS...
+// ==========================================
 async function inicializarDashboard() {
   if (!document.getElementById("stat-total-encomendas")) return;
   try {
@@ -691,6 +698,9 @@ async function apagarFuncionario(id) {
   } catch (err) { alert("Erro ao apagar."); }
 }
 
+// ==========================================
+// CONFIGURAÇÕES GERAIS
+// ==========================================
 async function inicializarAdminConfigGeral() {
   const form = document.getElementById("form-config-geral");
   if (!form) return;
@@ -716,6 +726,7 @@ async function inicializarAdminConfigGeral() {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> A guardar...';
     
     let promoEndDate = null;
     const inputData = document.getElementById("conf-promo-fim").value;
@@ -733,7 +744,23 @@ async function inicializarAdminConfigGeral() {
         updatedAt: new Date().toISOString()
       });
       alert("Configurações guardadas com sucesso!");
-    } catch (err) { alert("Erro ao guardar."); }
-    btn.disabled = false;
+      // Recarrega a página para atualizar o nome na barra lateral instantaneamente
+      window.location.reload();
+    } catch (err) { 
+      alert("Erro ao guardar."); 
+      btn.disabled = false; 
+      btn.innerHTML = 'Guardar Alterações';
+    }
   });
 }
+
+// ==========================================
+// ARRANQUE DA PÁGINA
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  inicializarAdmin();
+  
+  // BUG CORRIGIDO AQUI: Faltava ligar o formulário de criar funcionário
+  const formNovoFunc = document.getElementById("form-novo-funcionario");
+  if (formNovoFunc) formNovoFunc.addEventListener("submit", criarFuncionario);
+});

@@ -16,12 +16,22 @@
   --heading-font-family: 'Poppins', 'Inter', system-ui, sans-serif;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   font-family: var(--bs-body-font-family);
   background: #f8fafc;
   color: #0f172a;
   -webkit-font-smoothing: antialiased;
 }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
 h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, .section-title {
   font-family: var(--heading-font-family);
@@ -35,8 +45,18 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display
   margin: 0;
 }
 
+.brand-logo-img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+.brand-logo-img:hover {
+  transform: scale(1.05);
+}
+
 /* =========================================================
-   TOP BAR
+   TOP BAR & NAVBAR
    ========================================================= */
 .top-bar {
   background: #0b2545;
@@ -46,11 +66,7 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display
 .top-bar a { color: #e2e8f0; }
 .top-bar a:hover { color: #ffffff; }
 
-/* =========================================================
-   NAVBAR
-   ========================================================= */
-.main-navbar { border-bottom: 1px solid #e2e8f0; }
-.navbar-brand { color: var(--brand-navy) !important; font-size: 1.35rem; }
+.main-navbar { border-bottom: 1px solid #e2e8f0; padding: 10px 0; }
 
 .navbar .nav-link {
   color: #334155;
@@ -63,6 +79,48 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display
 .navbar .nav-link.active {
   color: var(--brand-azul) !important;
   background: var(--brand-azul-claro);
+}
+
+/* NOVO DESIGN DA BARRA DE PESQUISA */
+.navbar-search .input-group {
+  transition: all 0.3s ease;
+}
+.navbar-search .input-group:focus-within {
+  border-color: var(--brand-azul) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+.navbar-search .form-control::placeholder {
+  color: #94a3b8;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.btn-icon i { font-size: 1rem; }
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 999px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
 }
 
 /* =========================================================
@@ -201,12 +259,36 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display
   color: #fff;
 }
 
-.pay-badge {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #e2e8f0;
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
+/* =========================================================
+   RESPONSIVIDADE GLOBAL
+   ========================================================= */
+@media (max-width: 991.98px) {
+  .hero { padding: 40px 0 30px; text-align: center; }
+  .hero-card { margin-top: 30px; }
+  .hero .d-flex { justify-content: center; }
+  
+  .main-navbar .navbar-collapse { 
+    padding: 1rem; 
+    background: #fff; 
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-top: 10px;
+  }
+  
+  .navbar .nav-link { padding: 0.8rem 1rem !important; border-radius: 8px; }
+  .navbar .nav-link:hover { background: #f1f5f9; }
+}
+
+@media (max-width: 575.98px) {
+  h1.display-4 { font-size: 2.2rem; }
+  .section-title { font-size: 1.4rem; }
+  .cta-banner { padding: 28px 20px; text-align: center; }
+  
+  .top-bar .small { font-size: 0.7rem; justify-content: center; gap: 10px !important; text-align: center; }
+  .top-bar .d-flex { justify-content: center; }
+  
+  .site-footer { text-align: center; }
+  .site-footer .social-btn { margin: 0 auto; }
+  .footer-contact li { justify-content: center; }
+  .footer-contact i { display: none; }
 }

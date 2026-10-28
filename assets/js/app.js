@@ -6,6 +6,32 @@ document.addEventListener("DOMContentLoaded", () => {
     AOS.init({ once: true, duration: 600, easing: "ease-out-cubic", offset: 60 });
   }
 
+  // --- LÊ AS CONFIGURAÇÕES DO FIREBASE EM TEMPO REAL ---
+  async function carregarConfiguracoesLoja() {
+    let nomeDaLoja = (typeof CONFIG !== "undefined" && CONFIG.loja && CONFIG.loja.nome) ? CONFIG.loja.nome : "Fashion Key";
+    
+    try {
+      if (typeof db !== "undefined") {
+        const doc = await db.collection("settings").doc("geral").get();
+        if (doc.exists && doc.data().nome) {
+          nomeDaLoja = doc.data().nome;
+        }
+      }
+    } catch (error) {
+      console.warn("Aviso: Não foi possível ler as configurações do Firebase. Usando o nome padrão.");
+    }
+
+    // Atualiza o Título da Aba do Navegador
+    document.title = nomeDaLoja + " — Compre em Moçambique";
+
+    // Atualiza os textos no Footer/Header que tenham a classe store-name-text
+    document.querySelectorAll(".store-name-text").forEach(el => {
+      el.textContent = nomeDaLoja;
+    });
+  }
+
+  carregarConfiguracoesLoja(); // Executa a leitura
+
   // Lógica da Navbar Dinâmica
   document.addEventListener("authReady", atualizarNavbarUtilizador);
   setTimeout(atualizarNavbarUtilizador, 500);
@@ -36,7 +62,6 @@ function atualizarNavbarUtilizador() {
   const prefixoAdmin = isSubpasta ? "../admin/" : "admin/";
 
   if (typeof utilizadorLogado !== "undefined" && utilizadorLogado !== null) {
-    // ALTERAÇÃO AQUI: Mostra "Admin" se for o admin, senão o primeiro nome
     let nomeExibir = utilizadorLogado.nome ? utilizadorLogado.nome.split(" ")[0] : "Cliente";
     const isAdmin = utilizadorLogado.email === "admin@loja.co.mz";
     
@@ -46,7 +71,6 @@ function atualizarNavbarUtilizador() {
 
     area.innerHTML = `
       <div class="dropdown">
-        <!-- Removido o "btn-icon" para ficar mais compacto -->
         <button class="btn btn-outline-secondary btn-sm dropdown-toggle px-3 rounded-pill" type="button" data-bs-toggle="dropdown">
           <i class="fa-solid fa-user-check me-1"></i> <span class="d-none d-lg-inline">Olá, ${nomeExibir}</span>
         </button>
