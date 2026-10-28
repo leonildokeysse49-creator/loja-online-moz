@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>A carregar Painel Admin...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
@@ -12,10 +14,12 @@
   <script src="../assets/js/config.js"></script>
   <script src="../assets/js/firebase.js"></script>
 </head>
-<body class="bg-light d-flex align-items-center justify-content-center" style="height: 100vh;">
+<body class="bg-light d-flex align-items-center justify-content-center" style="height: 100vh; font-family: sans-serif;">
   <div class="text-center">
-    <i class="fa-solid fa-spinner fa-spin fa-2x text-primary mb-3"></i>
-    <h4>A verificar permissões...</h4>
+    <!-- Ícone de loading simples -->
+    <div style="font-size: 3rem; color: #2563eb; margin-bottom: 15px;">⏳</div>
+    <h4 style="color: #0f172a;">A verificar permissões...</h4>
+    <p style="color: #64748b; font-size: 0.9rem;">Aguarda um momento.</p>
   </div>
 
   <script>
