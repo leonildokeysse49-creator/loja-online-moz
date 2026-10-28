@@ -182,4 +182,11 @@ function inicializarCheckout() {
       if (erro) erro.textContent = "";
     });
   });
+
+  // NOVO: Preencher automaticamente os dados do cliente se ele estiver logado
+  if (typeof utilizadorLogado !== "undefined" && utilizadorLogado !== null) {
+    if (document.getElementById("cli-nome")) document.getElementById("cli-nome").value = utilizadorLogado.nome || "";
+    if (document.getElementById("cli-email")) document.getElementById("cli-email").value = utilizadorLogado.email || "";
+    if (document.getElementById("cli-telefone")) document.getElementById("cli-telefone").value = utilizadorLogado.telefone || "";
+  }
 }

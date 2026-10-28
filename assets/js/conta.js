@@ -2,9 +2,8 @@
  * Lógica das páginas da Área do Cliente (Ligada ao Firebase Auth).
  */
 
-// Tem de esperar que o Firebase diga quem é o utilizador
 function aguardarAutenticacao(callback) {
-  if (utilizadorLogado !== null || window.location.pathname.includes("login.html") || window.location.pathname.includes("registo.html")) {
+  if (utilizadorLogado !== null) {
     callback();
   } else {
     document.addEventListener("authReady", callback);
@@ -28,6 +27,7 @@ function inicializarLogin() {
 
     const res = await loginUtilizador(email, pass);
     if (res.ok) {
+      // Apenas redireciona. O Admin pode entrar na área de cliente à vontade.
       window.location.href = "perfil.html";
     } else {
       erro.textContent = res.erro;
@@ -61,6 +61,13 @@ function inicializarRegisto() {
       return;
     }
 
+    if (email === "admin@loja.co.mz") {
+      erro.textContent = "Este e-mail está reservado para o Administrador.";
+      btn.disabled = false;
+      btn.innerHTML = "Criar conta";
+      return;
+    }
+
     const res = await registarUtilizador(nome, email, telefone, pass);
     if (res.ok) {
       window.location.href = "perfil.html";
@@ -76,6 +83,9 @@ function renderizarSidebar(ativo) {
   const alvo = document.getElementById("sidebar-conta");
   if (!alvo || !utilizadorLogado) return;
 
+  // Verifica se o utilizador logado é o admin
+  const isAdmin = utilizadorLogado.email === "admin@loja.co.mz";
+
   const links = [
     { href: "perfil.html", icone: "fa-user", label: "Meu Perfil", id: "perfil" },
     { href: "encomendas.html", icone: "fa-box", label: "Minhas Encomendas", id: "encomendas" },
@@ -84,14 +94,26 @@ function renderizarSidebar(ativo) {
     { href: "suporte.html", icone: "fa-headset", label: "Suporte", id: "suporte" }
   ];
 
+  let adminBtnHTML = "";
+  if (isAdmin) {
+    adminBtnHTML = `
+      <li class="mt-2 pt-2 border-top">
+        <a href="../admin/dashboard.html" class="text-primary fw-bold">
+          <i class="fa-solid fa-shield-halved"></i> Ir para o Painel Admin
+        </a>
+      </li>
+    `;
+  }
+
   alvo.innerHTML = `
     <div class="sidebar-user">
-      <div class="sidebar-avatar"><i class="fa-solid fa-user"></i></div>
+      <div class="sidebar-avatar"><i class="fa-solid ${isAdmin ? 'fa-user-shield' : 'fa-user'}"></i></div>
       <h4>${utilizadorLogado.nome.split(" ")[0]}</h4>
       <p>${utilizadorLogado.email}</p>
     </div>
     <ul class="sidebar-nav">
       ${links.map(l => `<li><a href="${l.href}" class="${ativo === l.id ? "active" : ""}"><i class="fa-solid ${l.icone}"></i> ${l.label}</a></li>`).join("")}
+      ${adminBtnHTML}
       <li class="mt-2 border-top pt-2"><a href="#" class="sair-btn" onclick="event.preventDefault(); if(confirm('Terminar sessão?')) terminarSessao();"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
     </ul>
   `;
@@ -193,7 +215,6 @@ function inicializarDetalhesConta() {
   });
 }
 
-// Placeholders para as outras abas
 function inicializarEnderecos() { aguardarAutenticacao(() => renderizarSidebar("enderecos")); }
 function inicializarPagamentosConta() { aguardarAutenticacao(() => renderizarSidebar("pagamentos")); }
 function inicializarSuporteConta() { aguardarAutenticacao(() => renderizarSidebar("suporte")); }

@@ -50,7 +50,9 @@
           </div>
         </form>
         <div class="d-flex align-items-center gap-2">
-          <a href="conta/login.html" class="btn btn-outline-secondary btn-icon"><i class="fa-regular fa-user"></i></a>
+          <div id="navbar-user-area" class="d-flex align-items-center">
+            <a href="conta/login.html" class="btn btn-outline-secondary btn-icon"><i class="fa-regular fa-user"></i></a>
+          </div>
           <a href="carrinho.html" class="btn btn-primary btn-icon position-relative">
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="cart-badge" id="carrinho-badge">0</span>
@@ -173,8 +175,10 @@
   <script src="assets/js/firebase.js"></script>
   <script src="assets/js/dados-demo.js"></script>
   <script src="assets/js/utilitarios.js"></script>
+  <script src="assets/js/autenticacao.js"></script> <!-- ADICIONADO -->
   <script src="assets/js/produtos.js"></script>
   <script src="assets/js/carrinho.js"></script>
+  <script src="assets/js/app.js"></script>
   
   <script>
     document.addEventListener("DOMContentLoaded", async () => {

@@ -49,7 +49,7 @@ function gerarCodigoSecreto() {
   return out;
 }
 
-// GRAVAR NO FIREBASE
+// GRAVAR NO FIREBASE (COM VALIDAÇÃO E TRANSAÇÃO DE STOCK)
 async function criarEncomendaFirebase(dados) {
   let num = gerarNumeroEncomenda();
   const codigo = gerarCodigoSecreto();
@@ -75,11 +75,46 @@ async function criarEncomendaFirebase(dados) {
   };
 
   try {
-    // Usa o número da encomenda como ID do documento para facilitar a busca
-    await db.collection("orders").doc(num).set(encomenda);
+    // Inicia a transação atómica (ou tudo corre bem, ou nada é gravado)
+    await db.runTransaction(async (transaction) => {
+      
+      // 1. Verificar o stock real de cada produto antes de avançar
+      for (const item of dados.itemsSnapshot) {
+        const produtoRef = db.collection("products").doc(item.produtoId);
+        const produtoDoc = await transaction.get(produtoRef);
+
+        if (!produtoDoc.exists) {
+          throw new Error(`O produto ${item.nome} já não se encontra disponível.`);
+        }
+
+        const stockAtual = produtoDoc.data().stock || 0;
+        if (stockAtual < item.quantidade) {
+          throw new Error(`Stock insuficiente para ${item.nome}. Restam apenas ${stockAtual} unidades.`);
+        }
+
+        // 2. Subtrair o stock de forma segura
+        transaction.update(produtoRef, {
+          stock: firebase.firestore.FieldValue.increment(-item.quantidade)
+        });
+      }
+
+      // 3. Se todos os produtos tiverem stock suficiente, cria a encomenda
+      const orderRef = db.collection("orders").doc(num);
+      transaction.set(orderRef, encomenda);
+    });
+
+    // Se a transação for bem-sucedida, retorna a encomenda
     return encomenda;
+
   } catch (error) {
     console.error("Erro ao gravar encomenda:", error);
+    
+    // Mostra ao utilizador o motivo exato do erro
+    if (error.message.includes("Stock insuficiente") || error.message.includes("já não se encontra")) {
+      alert("⚠️ " + error.message);
+    } else {
+      alert("Ocorreu um erro ao processar a encomenda. Tenta novamente.");
+    }
     return null;
   }
 }

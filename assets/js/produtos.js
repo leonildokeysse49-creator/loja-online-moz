@@ -164,7 +164,6 @@ function aplicarCatalogo() {
   const vazio = document.getElementById("estado-vazio-catalogo");
 
   if (total) total.textContent = lista.length;
-  console.log("🛒 Produtos a desenhar no ecrã:", lista.length);
 
   if (lista.length === 0) {
     if (grelha) grelha.innerHTML = "";
@@ -174,7 +173,7 @@ function aplicarCatalogo() {
   if (vazio) vazio.style.display = "none";
   
   if (grelha) {
-    grelha.innerHTML = lista.map((p, i) => cardProdutoHTML(p, 0)).join(""); // Forçamos o delay a 0 para não haver bugs de invisibilidade
+    grelha.innerHTML = lista.map((p, i) => cardProdutoHTML(p, 0)).join("");
   }
 
   const crumb = document.getElementById("crumb-categoria");
@@ -183,7 +182,6 @@ function aplicarCatalogo() {
     crumb.textContent = cat ? (EstadoCatalogo.subcategoria || cat.nome) : "Produtos";
   }
 
-  // OBRIGA as animações a correrem após o HTML ser injetado
   if (typeof AOS !== "undefined") {
     setTimeout(() => { AOS.refresh(); }, 100);
   }
@@ -253,8 +251,6 @@ async function inicializarCatalogo() {
 
     CACHE_CATEGORIAS = catSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     CACHE_PRODUTOS = prodSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-    console.log("📦 Total de produtos lidos do Firebase:", CACHE_PRODUTOS.length);
 
     EstadoCatalogo.categoria = obterParametro("categoria");
     EstadoCatalogo.subcategoria = obterParametro("sub");
@@ -393,7 +389,7 @@ async function inicializarPaginaProduto() {
 
         <div class="produto-meta">
           <div><i class="fa-solid fa-phone"></i> Apoio: <a href="tel:+258853217149">853 217 149</a></div>
-          <div><i class="fa-solid fa-envelope"></i> <a href="mailto:Leonildokeysse49@gmail.com">Leonildikeysse49@gmail.com</a></div>
+          <div><i class="fa-solid fa-envelope"></i> <a href="mailto:Leonildokeysse49@gmail.com">Leonildokeysse49@gmail.com</a></div>
           <div><i class="fa-solid fa-truck-fast"></i> Custo de entrega definido antes de confirmares</div>
           <div><i class="fa-solid fa-mobile-screen-button"></i> M-Pesa, e-Mola ou pagamento na entrega</div>
         </div>
