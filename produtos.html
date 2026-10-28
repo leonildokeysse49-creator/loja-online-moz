@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produtos — Loja Online</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/loja.css" />
+</head>
+<body>
+  <!-- TOP BAR E NAVBAR (Mantém o teu original, não mexer) -->
+  <div class="top-bar">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center py-2 small">
+      <div class="d-flex gap-3 flex-wrap">
+        <a href="tel:+258853217149" class="text-decoration-none text-reset"><i class="fa-solid fa-phone me-1"></i> 853 217 149</a>
+        <a href="mailto:Leonildokeysse49@gmail.com" class="text-decoration-none text-reset"><i class="fa-solid fa-envelope me-1"></i> Leonildokeysse49@gmail.com</a>
+      </div>
+      <div class="d-flex gap-3 flex-wrap">
+        <span><i class="fa-solid fa-location-dot me-1"></i> Maputo, Moçambique</span>
+        <a href="https://wa.me/258853217149" target="_blank" rel="noopener" class="text-decoration-none text-reset"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
+    <div class="container">
+      <a class="navbar-brand fw-bolder d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-bag-shopping"></i></span>
+        <span>Loja <span class="text-primary">Online</span></span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="categorias.html">Categorias</a></li>
+          <li class="nav-item"><a class="nav-link active" href="produtos.html">Produtos</a></li>
+          <li class="nav-item"><a class="nav-link" href="promocoes.html">Promoções</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <form class="d-flex me-lg-3 my-2 my-lg-0" role="search" action="pesquisa.html" method="get">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+            <input class="form-control border-start-0 ps-0" type="search" name="q" placeholder="Pesquisar produtos..." />
+          </div>
+        </form>
+        <div class="d-flex align-items-center gap-2">
+          <a href="conta/login.html" class="btn btn-outline-secondary btn-icon"><i class="fa-regular fa-user"></i></a>
+          <a href="carrinho.html" class="btn btn-primary btn-icon position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge" id="carrinho-badge">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb-wrap">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+          <li class="breadcrumb-item active" id="crumb-categoria">Produtos</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <section class="py-4">
+    <div class="container">
+      <div class="row g-4">
+        <!-- SIDEBAR FILTROS -->
+        <div class="col-lg-3">
+          <div class="filtros-card">
+            <div class="filtro-seccao">
+              <h6>Categorias</h6>
+              <div id="filtro-categorias"></div>
+              <button class="btn-limpar-filtros" id="btn-limpar-filtros"><i class="fa-solid fa-xmark me-1"></i> Limpar filtros</button>
+            </div>
+            <div class="filtro-seccao">
+              <h6>Preço (MZN)</h6>
+              <div class="filtro-preco-inputs">
+                <input type="number" class="form-control" id="preco-min" placeholder="Min" min="0" />
+                <span class="text-muted">–</span>
+                <input type="number" class="form-control" id="preco-max" placeholder="Max" min="0" />
+              </div>
+              <button class="btn btn-outline-primary btn-sm w-100 mt-2" id="btn-aplicar-preco">Aplicar</button>
+            </div>
+            <div class="filtro-seccao">
+              <h6>Disponibilidade</h6>
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="filtro-stock" /><label class="form-check-label" for="filtro-stock">Apenas em stock</label></div>
+            </div>
+            <div class="filtro-seccao">
+              <h6>Etiquetas</h6>
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="filtro-novo" /><label class="form-check-label" for="filtro-novo">Novidades</label></div>
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="filtro-promo" /><label class="form-check-label" for="filtro-promo">Em promoção</label></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LISTAGEM -->
+        <div class="col-lg-9">
+          <div class="toolbar-catalogo">
+            <div class="resultado-count"><strong id="total-resultados">0</strong> produtos encontrados</div>
+            <div class="d-flex gap-2 align-items-center">
+              <label class="small text-muted mb-0">Ordenar:</label>
+              <select class="form-select form-select-sm" id="ordenar">
+                <option value="relevancia">Relevância</option>
+                <option value="preco-asc">Preço: menor → maior</option>
+                <option value="preco-desc">Preço: maior → menor</option>
+                <option value="novos">Mais recentes</option>
+                <option value="nome">Nome (A–Z)</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- A GRELHA ONDE OS PRODUTOS VÃO APARECER -->
+          <div class="row g-4" id="grelha-produtos-catalogo"></div>
+          
+          <div id="estado-vazio-catalogo" style="display:none;">
+            <div class="estado-vazio">
+              <i class="fa-solid fa-box-open"></i>
+              <h3>Nenhum produto encontrado</h3>
+              <button class="btn btn-primary" onclick="document.getElementById('btn-limpar-filtros').click()">Limpar filtros</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container py-4 text-center small text-white-50">
+      © <span id="ano"></span> Loja Online — 853 217 149 — Leonildokeysse49@gmail.com
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/firebase.js"></script>
+  <script src="assets/js/dados-demo.js"></script>
+  <script src="assets/js/utilitarios.js"></script>
+  <script src="assets/js/produtos.js"></script>
+  <script src="assets/js/carrinho.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

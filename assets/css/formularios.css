@@ -1,0 +1,60 @@
+/* =========================================================
+   FORMULÁRIOS E INPUTS
+   ========================================================= */
+.form-label { font-size: 0.88rem; font-weight: 600; color: #334155; margin-bottom: 6px; }
+.form-control, .form-select { border-radius: 10px; padding: 10px 14px; font-size: 0.95rem; border: 1.5px solid #cbd5e1; }
+.form-control:focus, .form-select:focus { border-color: var(--brand-azul); box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
+.form-erro { font-size: 0.8rem; margin-top: 4px; font-weight: 500; }
+
+/* =========================================================
+   MÉTODOS DE PAGAMENTO (CHECKOUT)
+   ========================================================= */
+.metodo-pagamento {
+  display: block;
+  cursor: pointer;
+  margin-bottom: 10px;
+  position: relative;
+}
+.metodo-pagamento input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.metodo-pagamento-card {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 18px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.15s ease;
+  background: #fff;
+}
+.metodo-pagamento:hover .metodo-pagamento-card { border-color: #94a3b8; }
+.metodo-pagamento input:checked + .metodo-pagamento-card {
+  border-color: var(--brand-azul);
+  background: var(--brand-azul-claro);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+.metodo-pagamento-card i {
+  font-size: 1.4rem;
+  color: var(--brand-azul);
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.metodo-pagamento-card strong { display: block; font-size: 0.95rem; color: #0f172a; }
+.metodo-pagamento-card small { display: block; color: #64748b; font-size: 0.8rem; }
+
+.alerta-info-carrinho {
+  background: var(--brand-azul-claro);
+  color: var(--brand-azul-escuro);
+  font-size: 0.85rem;
+  padding: 10px 14px;
+  border-radius: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+.alerta-info-carrinho i { margin-top: 3px; flex-shrink: 0; }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8"><title>Utilizadores — Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/admin.css">
+</head>
+<body class="admin-body">
+  <div class="admin-wrapper">
+    <aside class="admin-sidebar" id="admin-sidebar"></aside>
+    
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1 class="page-title">Gestão de Utilizadores</h1>
+        <button class="btn btn-primary btn-sm fw-bold" data-bs-toggle="modal" data-bs-target="#modalNovoFuncionario">
+          <i class="fa-solid fa-plus me-1"></i> Novo Funcionário
+        </button>
+      </header>
+
+      <div class="admin-content">
+        <div class="card border-0 shadow-sm rounded-4">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Função (Role)</th>
+                  <th>Estado</th>
+                  <th class="text-end">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabela-utilizadores">
+                <!-- O JS vai preencher aqui -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL NOVO FUNCIONÁRIO -->
+  <div class="modal fade" id="modalNovoFuncionario" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-plus me-2"></i> Criar Funcionário</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="form-novo-funcionario">
+            <div class="mb-3">
+              <label class="form-label fw-bold">Nome Completo</label>
+              <input type="text" class="form-control" id="func-nome" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">E-mail</label>
+              <input type="email" class="form-control" id="func-email" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Telefone</label>
+              <input type="tel" class="form-control" id="func-telefone" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Função (Permissões)</label>
+              <select class="form-select" id="func-role" required>
+                <option value="gestor_catalogo">Gestor de Catálogo</option>
+                <option value="gestor_stock">Gestor de Stock</option>
+                <option value="operador">Operador de Encomendas</option>
+                <option value="entregador">Estafeta / Entregador</option>
+                <option value="admin">Administrador</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Palavra-passe Inicial</label>
+              <input type="password" class="form-control" id="func-pass" placeholder="Mínimo 6 caracteres" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 fw-bold">Criar Conta de Funcionário</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="../../assets/js/config.js"></script>
+  <script src="../../assets/js/firebase.js"></script>
+  <script src="../../assets/js/dados-demo.js"></script>
+  <script src="../../assets/js/utilitarios.js"></script>
+  <script src="../../assets/js/encomendas.js"></script>
+  <script src="../../assets/js/admin.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", inicializarAdmin);</script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto — Loja Online</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/loja.css" />
+</head>
+<body>
+
+  <!-- NAVBAR (Mantém a tua navbar original aqui) -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
+    <div class="container">
+      <a class="navbar-brand fw-bolder d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-bag-shopping"></i></span>
+        <span>Loja <span class="text-primary">Online</span></span>
+      </a>
+      <div class="ms-auto">
+        <a href="carrinho.html" class="btn btn-primary btn-icon position-relative">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge" id="carrinho-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER DA PÁGINA -->
+  <section class="page-header">
+    <div class="container text-center">
+      <h1>Fala Connosco</h1>
+      <p>Estamos aqui para ajudar. Envia-nos uma mensagem ou visita-nos.</p>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-5">
+        
+        <!-- COLUNA ESQUERDA: INFORMAÇÕES -->
+        <div class="col-lg-5">
+          <div class="card-box h-100 p-4">
+            <h3 class="fw-bold mb-4">Informações de Contacto</h3>
+            
+            <div class="d-flex align-items-start gap-3 mb-4">
+              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+                <i class="fa-solid fa-location-dot fs-5"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Endereço</h6>
+                <p class="text-muted mb-0">Av. Julius Nyerere, 123<br>Maputo, Moçambique</p>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3 mb-4">
+              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+                <i class="fa-solid fa-phone fs-5"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Telefone / WhatsApp</h6>
+                <p class="text-muted mb-0">+258 85 321 7149</p>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3 mb-4">
+              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+                <i class="fa-solid fa-envelope fs-5"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">E-mail</h6>
+                <p class="text-muted mb-0">Leonildokeysse49@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3 mb-4">
+              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+                <i class="fa-regular fa-clock fs-5"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Horário de Funcionamento</h6>
+                <p class="text-muted mb-0">Segunda a Sábado: 08h00 - 18h00<br>Domingo e Feriados: Fechado</p>
+              </div>
+            </div>
+
+            <hr class="my-4">
+            <h6 class="fw-bold mb-3">Segue-nos nas Redes Sociais</h6>
+            <div class="d-flex gap-2">
+              <a href="#" class="btn btn-outline-primary rounded-circle" style="width: 40px; height: 40px;"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="btn btn-outline-primary rounded-circle" style="width: 40px; height: 40px;"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://wa.me/258853217149" target="_blank" class="btn btn-outline-primary rounded-circle" style="width: 40px; height: 40px;"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUNA DIREITA: FORMULÁRIO -->
+        <div class="col-lg-7">
+          <div class="card-box p-4 h-100">
+            <h3 class="fw-bold mb-4">Envia-nos uma Mensagem</h3>
+            <form onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso! Entraremos em contacto em breve.');">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">O teu Nome</label>
+                  <input type="text" class="form-control" placeholder="Ex: João Silva" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">O teu E-mail</label>
+                  <input type="email" class="form-control" placeholder="nome@exemplo.com" required>
+                </div>
+                <div class="col-12">
+                  <label class="form-label fw-semibold">Assunto</label>
+                  <select class="form-select" required>
+                    <option value="">Seleciona uma opção...</option>
+                    <option value="duvida">Dúvida sobre Produto</option>
+                    <option value="encomenda">Problema com Encomenda</option>
+                    <option value="devolucao">Devolução / Reembolso</option>
+                    <option value="parceria">Parcerias / Vendas</option>
+                    <option value="outro">Outro Assunto</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label fw-semibold">Mensagem</label>
+                  <textarea class="form-control" rows="5" placeholder="Escreve a tua mensagem aqui..." required></textarea>
+                </div>
+                <div class="col-12 mt-4">
+                  <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
+                    <i class="fa-solid fa-paper-plane me-2"></i> Enviar Mensagem
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="rounded-4 overflow-hidden shadow-sm" style="height: 400px;">
+        <!-- Mapa do Google (Maputo) -->
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115442.08815733965!2d32.50917897040136!3d-25.97044039999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee699b4c621fb9b%3A0x6c37a2c9ebd11c74!2sMaputo%2C%20Mo%C3%A7ambique!5e0!3m2!1spt-PT!2smz!4v1700000000000!5m2!1spt-PT!2smz" 
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container py-4 text-center small text-white-50">
+      © <span id="ano"></span> Loja Online — 853 217 149 — Leonildokeysse49@gmail.com
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
