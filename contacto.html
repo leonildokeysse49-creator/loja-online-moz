@@ -13,23 +13,67 @@
 </head>
 <body>
 
-  <!-- NAVBAR (Mantém a tua navbar original aqui) -->
+  <div class="top-bar">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center py-2 small">
+      <div class="d-flex gap-3 flex-wrap">
+        <a href="tel:+258853217149" class="text-decoration-none text-reset"><i class="fa-solid fa-phone me-1"></i> 853 217 149</a>
+        <a href="mailto:Leonildokeysse49@gmail.com" class="text-decoration-none text-reset"><i class="fa-solid fa-envelope me-1"></i> Leonildokeysse49@gmail.com</a>
+      </div>
+      <div class="d-flex gap-3 flex-wrap">
+        <span><i class="fa-solid fa-location-dot me-1"></i> Maputo, Moçambique</span>
+        <a href="https://wa.me/258853217149" target="_blank" rel="noopener" class="text-decoration-none text-reset"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
     <div class="container">
       <a class="navbar-brand fw-bolder d-flex align-items-center gap-2" href="index.html">
         <span class="brand-mark"><i class="fa-solid fa-bag-shopping"></i></span>
         <span>Loja <span class="text-primary">Online</span></span>
       </a>
-      <div class="ms-auto">
-        <a href="carrinho.html" class="btn btn-primary btn-icon position-relative">
-          <i class="fa-solid fa-cart-shopping"></i>
-          <span class="cart-badge" id="carrinho-badge">0</span>
-        </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="categorias.html">Categorias</a></li>
+          <li class="nav-item"><a class="nav-link" href="produtos.html">Produtos</a></li>
+          <li class="nav-item"><a class="nav-link" href="promocoes.html">Promoções</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contacto.html">Contacto</a></li>
+        </ul>
+        <form class="d-flex me-lg-3 my-2 my-lg-0" role="search" action="pesquisa.html" method="get">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+            <input class="form-control border-start-0 ps-0" type="search" name="q" placeholder="Pesquisar produtos..." />
+          </div>
+        </form>
+        <div class="d-flex align-items-center gap-2">
+          <a href="conta/login.html" class="btn btn-outline-secondary btn-icon"><i class="fa-regular fa-user"></i></a>
+          <a href="carrinho.html" class="btn btn-primary btn-icon position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge" id="carrinho-badge">0</span>
+          </a>
+        </div>
       </div>
     </div>
   </nav>
 
-  <!-- HEADER DA PÁGINA -->
+  <div class="breadcrumb-wrap">
+    <div class="container d-flex justify-content-between align-items-center">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+          <li class="breadcrumb-item active">Contacto</li>
+        </ol>
+      </nav>
+      <button onclick="history.back()" class="btn btn-sm btn-outline-secondary">
+        <i class="fa-solid fa-arrow-left me-1"></i> Voltar
+      </button>
+    </div>
+  </div>
+
   <section class="page-header">
     <div class="container text-center">
       <h1>Fala Connosco</h1>
@@ -37,54 +81,28 @@
     </div>
   </section>
 
-  <!-- CONTEÚDO PRINCIPAL -->
   <section class="py-5">
     <div class="container">
       <div class="row g-5">
-        
-        <!-- COLUNA ESQUERDA: INFORMAÇÕES -->
         <div class="col-lg-5">
           <div class="card-box h-100 p-4">
             <h3 class="fw-bold mb-4">Informações de Contacto</h3>
             
             <div class="d-flex align-items-start gap-3 mb-4">
-              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
-                <i class="fa-solid fa-location-dot fs-5"></i>
-              </div>
-              <div>
-                <h6 class="fw-bold mb-1">Endereço</h6>
-                <p class="text-muted mb-0">Av. Julius Nyerere, 123<br>Maputo, Moçambique</p>
-              </div>
+              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;"><i class="fa-solid fa-location-dot fs-5"></i></div>
+              <div><h6 class="fw-bold mb-1">Endereço</h6><p class="text-muted mb-0">Av. Julius Nyerere, 123<br>Maputo, Moçambique</p></div>
             </div>
-
             <div class="d-flex align-items-start gap-3 mb-4">
-              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
-                <i class="fa-solid fa-phone fs-5"></i>
-              </div>
-              <div>
-                <h6 class="fw-bold mb-1">Telefone / WhatsApp</h6>
-                <p class="text-muted mb-0">+258 85 321 7149</p>
-              </div>
+              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;"><i class="fa-solid fa-phone fs-5"></i></div>
+              <div><h6 class="fw-bold mb-1">Telefone / WhatsApp</h6><p class="text-muted mb-0">+258 85 321 7149</p></div>
             </div>
-
             <div class="d-flex align-items-start gap-3 mb-4">
-              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
-                <i class="fa-solid fa-envelope fs-5"></i>
-              </div>
-              <div>
-                <h6 class="fw-bold mb-1">E-mail</h6>
-                <p class="text-muted mb-0">Leonildokeysse49@gmail.com</p>
-              </div>
+              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;"><i class="fa-solid fa-envelope fs-5"></i></div>
+              <div><h6 class="fw-bold mb-1">E-mail</h6><p class="text-muted mb-0">Leonildokeysse49@gmail.com</p></div>
             </div>
-
             <div class="d-flex align-items-start gap-3 mb-4">
-              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
-                <i class="fa-regular fa-clock fs-5"></i>
-              </div>
-              <div>
-                <h6 class="fw-bold mb-1">Horário de Funcionamento</h6>
-                <p class="text-muted mb-0">Segunda a Sábado: 08h00 - 18h00<br>Domingo e Feriados: Fechado</p>
-              </div>
+              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;"><i class="fa-regular fa-clock fs-5"></i></div>
+              <div><h6 class="fw-bold mb-1">Horário de Funcionamento</h6><p class="text-muted mb-0">Segunda a Sábado: 08h00 - 18h00<br>Domingo e Feriados: Fechado</p></div>
             </div>
 
             <hr class="my-4">
@@ -97,7 +115,6 @@
           </div>
         </div>
 
-        <!-- COLUNA DIREITA: FORMULÁRIO -->
         <div class="col-lg-7">
           <div class="card-box p-4 h-100">
             <h3 class="fw-bold mb-4">Envia-nos uma Mensagem</h3>
@@ -127,35 +144,71 @@
                   <textarea class="form-control" rows="5" placeholder="Escreve a tua mensagem aqui..." required></textarea>
                 </div>
                 <div class="col-12 mt-4">
-                  <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
-                    <i class="fa-solid fa-paper-plane me-2"></i> Enviar Mensagem
-                  </button>
+                  <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold"><i class="fa-solid fa-paper-plane me-2"></i> Enviar Mensagem</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- MAPA -->
   <section class="pb-5">
     <div class="container">
       <div class="rounded-4 overflow-hidden shadow-sm" style="height: 400px;">
-        <!-- Mapa do Google (Maputo) -->
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115442.08815733965!2d32.50917897040136!3d-25.97044039999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee699b4c621fb9b%3A0x6c37a2c9ebd11c74!2sMaputo%2C%20Mo%C3%A7ambique!5e0!3m2!1spt-PT!2smz!4v1700000000000!5m2!1spt-PT!2smz" 
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115442.08815733965!2d32.50917897040136!3d-25.97044039999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee699b4c621fb9b%3A0x6c37a2c9ebd11c74!2sMaputo%2C%20Mo%C3%A7ambique!5e0!3m2!1spt-PT!2smz!4v1700000000000!5m2!1spt-PT!2smz" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
 
   <footer class="site-footer">
-    <div class="container py-4 text-center small text-white-50">
-      © <span id="ano"></span> Loja Online — 853 217 149 — Leonildokeysse49@gmail.com
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="brand-mark"><i class="fa-solid fa-bag-shopping"></i></span>
+            <span class="fw-bolder fs-5 text-white">Loja Online</span>
+          </div>
+          <p class="text-white-50 small mb-3">Loja multi-categorias em Moçambique. Preços em MZN. Pagamento por M-Pesa, e-Mola ou na entrega.</p>
+          <div class="d-flex gap-2">
+            <a href="https://wa.me/258853217149" target="_blank" rel="noopener" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:Leonildokeysse49@gmail.com" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
+            <a href="tel:+258853217149" class="social-btn"><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white text-uppercase small fw-bold mb-3">Loja</h6>
+          <ul class="list-unstyled footer-links">
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="categorias.html">Categorias</a></li>
+            <li><a href="promocoes.html">Promoções</a></li>
+            <li><a href="sobre.html">Sobre nós</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white text-uppercase small fw-bold mb-3">Ajuda</h6>
+          <ul class="list-unstyled footer-links">
+            <li><a href="ajuda.html">Central de ajuda</a></li>
+            <li><a href="acompanhar-encomenda.html">Acompanhar encomenda</a></li>
+            <li><a href="cancelamento.html">Cancelamentos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="text-white text-uppercase small fw-bold mb-3">Contacto</h6>
+          <ul class="list-unstyled footer-contact">
+            <li><i class="fa-solid fa-phone"></i><a href="tel:+258853217149">853 217 149</a></li>
+            <li><i class="fa-solid fa-envelope"></i><a href="mailto:Leonildokeysse49@gmail.com">Leonildokeysse49@gmail.com</a></li>
+            <li><i class="fa-solid fa-location-dot"></i><span>Maputo, Moçambique</span></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary opacity-25 my-4" />
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 small text-white-50">
+        <div>© <span id="ano"></span> Loja Online. Todos os direitos reservados.</div>
+        <div class="d-flex gap-3"><a href="admin/login.html" class="text-decoration-none text-white-50">Admin</a></div>
+      </div>
     </div>
   </footer>
 

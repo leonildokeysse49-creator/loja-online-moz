@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="assets/css/loja.css" />
 </head>
 <body>
-  <!-- TOP BAR E NAVBAR (Mantém o teu original, não mexer) -->
   <div class="top-bar">
     <div class="container d-flex flex-wrap justify-content-between align-items-center py-2 small">
       <div class="d-flex gap-3 flex-wrap">
@@ -60,20 +59,22 @@
   </nav>
 
   <div class="breadcrumb-wrap">
-    <div class="container">
+    <div class="container d-flex justify-content-between align-items-center">
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb mb-0">
           <li class="breadcrumb-item"><a href="index.html">Início</a></li>
           <li class="breadcrumb-item active" id="crumb-categoria">Produtos</li>
         </ol>
       </nav>
+      <button onclick="history.back()" class="btn btn-sm btn-outline-secondary">
+        <i class="fa-solid fa-arrow-left me-1"></i> Voltar
+      </button>
     </div>
   </div>
 
   <section class="py-4">
     <div class="container">
       <div class="row g-4">
-        <!-- SIDEBAR FILTROS -->
         <div class="col-lg-3">
           <div class="filtros-card">
             <div class="filtro-seccao">
@@ -102,7 +103,6 @@
           </div>
         </div>
 
-        <!-- LISTAGEM -->
         <div class="col-lg-9">
           <div class="toolbar-catalogo">
             <div class="resultado-count"><strong id="total-resultados">0</strong> produtos encontrados</div>
@@ -118,7 +118,6 @@
             </div>
           </div>
           
-          <!-- A GRELHA ONDE OS PRODUTOS VÃO APARECER -->
           <div class="row g-4" id="grelha-produtos-catalogo"></div>
           
           <div id="estado-vazio-catalogo" style="display:none;">
@@ -134,8 +133,52 @@
   </section>
 
   <footer class="site-footer">
-    <div class="container py-4 text-center small text-white-50">
-      © <span id="ano"></span> Loja Online — 853 217 149 — Leonildokeysse49@gmail.com
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="brand-mark"><i class="fa-solid fa-bag-shopping"></i></span>
+            <span class="fw-bolder fs-5 text-white">Loja Online</span>
+          </div>
+          <p class="text-white-50 small mb-3">Loja multi-categorias em Moçambique. Preços em MZN. Pagamento por M-Pesa, e-Mola ou na entrega.</p>
+          <div class="d-flex gap-2">
+            <a href="https://wa.me/258853217149" target="_blank" rel="noopener" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:Leonildokeysse49@gmail.com" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
+            <a href="tel:+258853217149" class="social-btn"><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white text-uppercase small fw-bold mb-3">Loja</h6>
+          <ul class="list-unstyled footer-links">
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="categorias.html">Categorias</a></li>
+            <li><a href="promocoes.html">Promoções</a></li>
+            <li><a href="sobre.html">Sobre nós</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white text-uppercase small fw-bold mb-3">Ajuda</h6>
+          <ul class="list-unstyled footer-links">
+            <li><a href="ajuda.html">Central de ajuda</a></li>
+            <li><a href="acompanhar-encomenda.html">Acompanhar encomenda</a></li>
+            <li><a href="cancelamento.html">Cancelamentos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="text-white text-uppercase small fw-bold mb-3">Contacto</h6>
+          <ul class="list-unstyled footer-contact">
+            <li><i class="fa-solid fa-phone"></i><a href="tel:+258853217149">853 217 149</a></li>
+            <li><i class="fa-solid fa-envelope"></i><a href="mailto:Leonildokeysse49@gmail.com">Leonildokeysse49@gmail.com</a></li>
+            <li><i class="fa-solid fa-location-dot"></i><span>Maputo, Moçambique</span></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary opacity-25 my-4" />
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 small text-white-50">
+        <div>© <span id="ano"></span> Loja Online. Todos os direitos reservados.</div>
+        <div class="d-flex gap-3"><a href="admin/login.html" class="text-decoration-none text-white-50">Admin</a></div>
+      </div>
     </div>
   </footer>
 
