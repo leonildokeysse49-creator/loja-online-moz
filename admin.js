@@ -1,34 +1,56 @@
 // ==========================================
-// AUTENTICAÇÃO DO ADMIN (FIREBASE)
+// AUTENTICAÇÃO DO ADMIN (FIREBASE + ROLES)
 // ==========================================
 
-// Verifica se o utilizador logado é o admin oficial
 async function protegerAdmin() {
   return new Promise((resolve, reject) => {
-    auth.onAuthStateChanged((user) => {
-      // Verifica se o utilizador existe e se o e-mail é o do admin
-      if (user && user.email === "admin@loja.co.mz") {
-        resolve();
-      } else {
-        // Se não for o admin, redireciona para o login
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
         const isSubpasta = window.location.pathname.split("/admin/")[1]?.includes("/");
         window.location.href = isSubpasta ? "../login.html" : "login.html";
-        reject("Acesso negado");
+        reject("Sem sessão");
+        return;
+      }
+
+      try {
+        const doc = await db.collection("users").doc(user.uid).get();
+        const role = doc.exists ? doc.data().role : (user.email === "admin@loja.co.mz" ? "admin" : "cliente");
+
+        if (["admin", "gestor_catalogo", "gestor_stock", "operador", "entregador"].includes(role)) {
+          resolve();
+        } else {
+          alert("Acesso restrito à equipa da loja.");
+          auth.signOut();
+          const isSubpasta = window.location.pathname.split("/admin/")[1]?.includes("/");
+          window.location.href = isSubpasta ? "../login.html" : "login.html";
+          reject("Acesso negado");
+        }
+      } catch (error) {
+        console.error("Erro ao verificar permissões:", error);
+        reject("Erro de leitura");
       }
     });
   });
 }
 
-// Termina a sessão no Firebase e redireciona
 function terminarSessaoAdmin() {
   auth.signOut().then(() => {
     window.location.href = "../login.html";
   });
 }
 
-function renderizarSidebarAdmin() {
+async function renderizarSidebarAdmin() {
   const alvo = document.getElementById("admin-sidebar");
   if (!alvo) return;
+
+  // Tenta ler o nome da loja da base de dados para ficar dinâmico
+  let nomeLoja = "Fashion Key";
+  try {
+    const confDoc = await db.collection("settings").doc("geral").get();
+    if (confDoc.exists && confDoc.data().nome) {
+      nomeLoja = confDoc.data().nome;
+    }
+  } catch (e) { console.log("Usando nome padrão"); }
 
   const path = window.location.pathname;
   let ativo = "";
@@ -63,7 +85,7 @@ function renderizarSidebarAdmin() {
     { cat: "Sistema", href: "suporte/index.html", icone: "fa-headset", label: "Suporte", id: "suporte" }
   ];
 
-  let html = `<a href="${caminhoBase}dashboard.html" class="brand"><i class="fa-solid fa-bag-shopping"></i> Admin</a><div class="admin-nav">`;
+  let html = `<a href="${caminhoBase}dashboard.html" class="brand"><i class="fa-solid fa-key"></i> ${nomeLoja} <small class="fs-6 fw-normal ms-1">Admin</small></a><div class="admin-nav">`;
   let catAtual = "";
   
   links.forEach(l => {
@@ -83,20 +105,15 @@ function renderizarSidebarAdmin() {
 
 // MOTOR CENTRAL
 async function inicializarAdmin() {
-  console.log("🔄 A verificar permissões de Admin...");
-  
   try {
-    // Espera o Firebase confirmar se o utilizador está logado e é o admin
     await protegerAdmin(); 
-    console.log("✅ Acesso autorizado. A carregar interface...");
   } catch (e) {
-    return; // Para a execução se não for admin
+    return; 
   }
 
-  renderizarSidebarAdmin();
+  await renderizarSidebarAdmin(); // Agora com await porque vai buscar o nome da loja
   
   const path = window.location.pathname;
-  const content = document.querySelector(".admin-content");
 
   if (path.includes("dashboard.html")) inicializarDashboard();
   else if (path.includes("vendas/encomendas.html")) inicializarAdminEncomendas();
@@ -113,18 +130,7 @@ async function inicializarAdmin() {
   else if (path.includes("clientes/index.html")) inicializarAdminClientes();
   else if (path.includes("utilizadores/index.html")) inicializarAdminUtilizadores();
   else if (path.includes("configuracoes/geral.html")) inicializarAdminConfigGeral();
-  else {
-    if (content && !content.hasChildNodes()) {
-      content.innerHTML = `<div class="d-flex align-items-center justify-content-center" style="min-height: 60vh;"><div class="text-center"><i class="fa-solid fa-person-digging text-muted mb-3" style="font-size: 4rem;"></i><h2 class="fw-bold">Módulo em Construção</h2></div></div>`;
-    }
-  }
 }
-
-window.addEventListener('pageshow', function(event) {
-  if (event.persisted) {
-    inicializarAdmin();
-  }
-});
 
 // ==========================================
 // PRODUTOS
@@ -200,17 +206,13 @@ async function salvarNovoProduto(e) {
 }
 
 async function inicializarEditarProduto() {
-  console.log("A carregar dados para edição...");
   await carregarCategoriasSelect();
-  
   const id = obterParametro("id");
   if (!id) return window.location.href = "produtos.html";
-  
   try {
     const doc = await db.collection("products").doc(id).get();
     if (!doc.exists) return alert("Produto não encontrado.");
     const p = doc.data();
-    
     document.getElementById("prod-id").value = id;
     document.getElementById("prod-nome").value = p.nome;
     document.getElementById("prod-preco").value = p.preco;
@@ -219,10 +221,8 @@ async function inicializarEditarProduto() {
     document.getElementById("prod-descricao").value = p.descricao || "";
     document.getElementById("prod-imagem-url").value = p.imagem || "";
     document.getElementById("prod-categoria").value = p.categoriaId;
-    
     document.getElementById("radio-url").checked = true;
     toggleTipoImagem();
-    
     document.getElementById("prod-ativo").checked = p.ativo !== false;
     document.getElementById("prod-destaque").checked = p.destaque === true;
     document.getElementById("prod-novo").checked = p.novo === true;
@@ -236,7 +236,6 @@ async function atualizarProduto(e) {
   try {
     const id = document.getElementById("prod-id").value;
     const urlImagem = await processarImagem();
-    
     await db.collection("products").doc(id).update({
       nome: document.getElementById("prod-nome").value.trim(),
       preco: parseFloat(document.getElementById("prod-preco").value),
@@ -257,18 +256,14 @@ async function atualizarProduto(e) {
 async function inicializarAdminProdutos() {
   const tbody = document.getElementById("tabela-produtos");
   if (!tbody) return;
-
   tbody.innerHTML = "<tr><td colspan='4' class='text-center py-4'>A carregar produtos...</td></tr>";
-
   try {
     const snapshot = await db.collection("products").get();
     tbody.innerHTML = "";
-
     if (snapshot.empty) {
       tbody.innerHTML = "<tr><td colspan='4' class='text-center text-muted py-4'>Nenhum produto registado.</td></tr>";
       return;
     }
-
     snapshot.forEach(doc => {
       const p = doc.data();
       tbody.innerHTML += `
@@ -439,11 +434,10 @@ async function apagarSubcategoria(catId, index) {
 }
 
 // ==========================================
-// DASHBOARD, ENCOMENDAS, STOCK, ENTREGAS, CLIENTES, CONFIG...
+// DASHBOARD, ENCOMENDAS, STOCK, ENTREGAS...
 // ==========================================
 async function inicializarDashboard() {
-  const content = document.querySelector(".admin-content");
-  if (!content || !document.getElementById("stat-total-encomendas")) return;
+  if (!document.getElementById("stat-total-encomendas")) return;
   try {
     const snapshot = await db.collection("orders").get();
     let enc = [];
@@ -705,7 +699,7 @@ async function apagarFuncionario(id) {
 }
 
 // ==========================================
-// CONFIGURAÇÕES GERAIS (INCLUI DATA DE FIM DA PROMOÇÃO)
+// CONFIGURAÇÕES GERAIS
 // ==========================================
 async function inicializarAdminConfigGeral() {
   const form = document.getElementById("form-config-geral");
@@ -720,7 +714,6 @@ async function inicializarAdminConfigGeral() {
       if(document.getElementById("conf-email")) document.getElementById("conf-email").value = d.email || "";
       if(document.getElementById("conf-reserva")) document.getElementById("conf-reserva").value = d.reserva || 15;
       
-      // LÊ A DATA DA PROMOÇÃO E CONVERTE PARA O INPUT
       if(document.getElementById("conf-promo-fim") && d.promoEndDate) {
         const date = new Date(d.promoEndDate);
         date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
@@ -733,6 +726,7 @@ async function inicializarAdminConfigGeral() {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> A guardar...';
     
     let promoEndDate = null;
     const inputData = document.getElementById("conf-promo-fim").value;
@@ -750,13 +744,23 @@ async function inicializarAdminConfigGeral() {
         updatedAt: new Date().toISOString()
       });
       alert("Configurações guardadas com sucesso!");
-    } catch (err) { alert("Erro ao guardar."); }
-    btn.disabled = false;
+      // Recarrega a página para atualizar o nome na barra lateral instantaneamente
+      window.location.reload();
+    } catch (err) { 
+      alert("Erro ao guardar."); 
+      btn.disabled = false; 
+      btn.innerHTML = 'Guardar Alterações';
+    }
   });
 }
 
+// ==========================================
+// ARRANQUE DA PÁGINA
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   inicializarAdmin();
+  
+  // BUG CORRIGIDO AQUI: Faltava ligar o formulário de criar funcionário
   const formNovoFunc = document.getElementById("form-novo-funcionario");
   if (formNovoFunc) formNovoFunc.addEventListener("submit", criarFuncionario);
 });

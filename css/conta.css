@@ -1,0 +1,182 @@
+/* =========================================================
+   SIDEBAR DA ÁREA DO CLIENTE
+   ========================================================= */
+.sidebar-conta {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  position: sticky;
+  top: 90px;
+}
+.sidebar-user {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 20px;
+}
+.sidebar-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--brand-azul-claro);
+  color: var(--brand-azul);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto 12px;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(37,99,235,.2);
+}
+.sidebar-user h4 {
+  font-size: 1.05rem;
+  margin: 0 0 4px;
+  color: #0f172a;
+}
+.sidebar-user p {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+  word-break: break-all;
+}
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-nav li { margin-bottom: 4px; }
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  color: #475569;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+.sidebar-nav a:hover {
+  background: #f1f5f9;
+  color: var(--brand-azul);
+}
+.sidebar-nav a.active {
+  background: var(--brand-azul-claro);
+  color: var(--brand-azul);
+  font-weight: 600;
+}
+.sidebar-nav a i {
+  width: 20px;
+  text-align: center;
+  font-size: 1.05rem;
+}
+.sidebar-nav .sair-btn { color: #ef4444; }
+.sidebar-nav .sair-btn:hover { background: #fee2e2; color: #b91c1c; }
+
+/* =========================================================
+   CONTEÚDO DA CONTA
+   ========================================================= */
+.conta-box {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 28px;
+}
+.conta-box h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 20px;
+}
+.conta-box h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: #0f172a;
+}
+
+/* =========================================================
+   LOGIN / REGISTO
+   ========================================================= */
+.auth-wrapper {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+.auth-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 10px 30px rgba(15,23,42,.05);
+}
+.auth-card h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+.auth-card p.sub {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+.auth-card .auth-icon {
+  display: block;
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--brand-azul);
+  margin-bottom: 16px;
+}
+
+/* =========================================================
+   LISTA DE ENCOMENDAS
+   ========================================================= */
+.encomenda-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+.encomenda-item:hover {
+  border-color: var(--brand-azul);
+  box-shadow: 0 4px 12px rgba(37,99,235,.08);
+}
+.encomenda-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.encomenda-num { font-weight: 800; color: #0f172a; font-size: 1rem; }
+.encomenda-data { font-size: 0.8rem; color: #64748b; }
+.encomenda-total { font-weight: 700; color: var(--brand-azul-escuro); font-size: 1.05rem; }
+
+/* =========================================================
+   RESPONSIVIDADE (ÁREA DO CLIENTE)
+   ========================================================= */
+@media (max-width: 991.98px) {
+  .sidebar-conta { position: relative; top: 0; margin-bottom: 20px; }
+  .sidebar-user { display: flex; align-items: center; text-align: left; gap: 15px; padding-bottom: 15px; margin-bottom: 15px; }
+  .sidebar-avatar { margin: 0; width: 56px; height: 56px; font-size: 1.4rem; }
+  .sidebar-nav { display: flex; flex-wrap: wrap; gap: 5px; }
+  .sidebar-nav li { margin-bottom: 0; }
+  .sidebar-nav a { padding: 8px 12px; }
+  .sidebar-nav .mt-2 { margin-top: 0 !important; border-top: none !important; padding-top: 0 !important; }
+  .conta-box { padding: 20px; }
+}
+@media (max-width: 575.98px) {
+  .auth-card { padding: 25px 20px; }
+  .encomenda-header { flex-direction: column; align-items: flex-start; }
+}

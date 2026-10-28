@@ -1,0 +1,61 @@
+/* =========================================================
+   RESPONSIVIDADE GLOBAL (TABLETS E TELEMÓVEIS)
+   ========================================================= */
+
+/* Tablets e Ecrãs Médios (max-width: 991px) */
+@media (max-width: 991.98px) {
+  .hero { padding: 50px 0 40px; text-align: center; }
+  .hero-card { margin-top: 30px; }
+  .hero .d-flex { justify-content: center; }
+  .hero .d-flex.flex-wrap.gap-4 { justify-content: center; }
+  .main-navbar .navbar-collapse { padding-top: 1rem; border-top: 1px solid #e2e8f0; margin-top: 1rem; }
+  .navbar .nav-link { padding: 0.5rem 0.5rem !important; }
+  
+  /* Admin Layout (Transformar sidebar em menu superior) */
+  .admin-wrapper { flex-direction: column; }
+  .admin-sidebar { width: 100%; position: relative; }
+  .admin-nav { display: flex; flex-wrap: wrap; gap: 5px; padding: 10px; }
+  .admin-nav-cat { width: 100%; margin: 5px 0; }
+  .admin-nav a { padding: 8px 12px; margin-bottom: 0; }
+  
+  /* Conta Layout */
+  .sidebar-conta { position: relative; top: 0; margin-bottom: 20px; }
+  .sidebar-user { display: flex; align-items: center; text-align: left; gap: 15px; padding-bottom: 15px; margin-bottom: 15px; }
+  .sidebar-avatar { margin: 0; width: 50px; height: 50px; font-size: 1.2rem; }
+  .sidebar-nav { display: flex; flex-wrap: wrap; gap: 5px; }
+  .sidebar-nav li { margin-bottom: 0; }
+  .sidebar-nav a { padding: 8px 12px; }
+  .sidebar-nav .mt-2 { margin-top: 0 !important; border-top: none !important; padding-top: 0 !important; }
+  
+  /* Produto e Catálogo */
+  .filtros-card { position: relative; top: 0; margin-bottom: 20px; }
+  .produto-galeria-principal { max-width: 400px; margin: 0 auto 12px; }
+  .produto-galeria-thumbs { justify-content: center; }
+  .produto-info { text-align: center; }
+  .produto-preco-wrap, .produto-acoes { justify-content: center; }
+  .produto-meta { text-align: left; display: inline-block; }
+}
+
+/* Telemóveis (max-width: 575px) */
+@media (max-width: 575.98px) {
+  .section-title { font-size: 1.4rem; }
+  .cta-banner { padding: 28px 20px; text-align: center; }
+  .top-bar .small { font-size: 0.72rem; justify-content: center; gap: 10px !important; text-align: center; }
+  .top-bar .d-flex { justify-content: center; }
+  .site-footer { text-align: center; }
+  .site-footer .social-btn { margin: 0 auto; }
+  .footer-contact li { justify-content: center; }
+  .footer-contact i { display: none; }
+  
+  /* Carrinho e Checkout */
+  .cart-item { flex-wrap: wrap; text-align: center; }
+  .cart-item-img { width: 80px; height: 80px; margin: 0 auto; }
+  .cart-item-info { width: 100%; margin-top: 10px; }
+  .cart-item-total { width: 100%; text-align: center; margin-top: 10px; }
+  .resumo-card { position: relative; top: 0; }
+  
+  /* Admin */
+  .admin-header { padding: 0 15px; flex-direction: column; height: auto; padding-bottom: 15px; gap: 10px; text-align: center; }
+  .admin-content { padding: 15px; }
+  .admin-table th, .admin-table td { padding: 10px; font-size: 0.8rem; }
+}

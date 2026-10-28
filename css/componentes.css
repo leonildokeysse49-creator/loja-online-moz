@@ -1,0 +1,205 @@
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.btn-icon i { font-size: 1rem; }
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 999px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand-azul), var(--brand-azul-escuro));
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+/* =========================================================
+   CATEGORIAS CARD (HOME)
+   ========================================================= */
+.cat-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #0f172a;
+  transition: all 0.2s ease;
+  display: block;
+  height: 100%;
+}
+.cat-card:hover {
+  border-color: var(--brand-azul);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+  transform: translateY(-4px);
+  color: var(--brand-azul);
+}
+.cat-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 14px;
+  border-radius: 18px;
+  background: var(--brand-azul-claro);
+  color: var(--brand-azul);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  transition: all 0.2s ease;
+}
+.cat-card:hover .cat-icon {
+  background: var(--brand-azul);
+  color: #fff;
+  transform: rotate(-6deg) scale(1.05);
+}
+.cat-card h5 { font-weight: 700; font-size: 1rem; margin: 0 0 4px; }
+.cat-card p { font-size: 0.82rem; color: #64748b; margin: 0; }
+
+/* =========================================================
+   PRODUTO CARD
+   ========================================================= */
+.prod-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.prod-card:hover {
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  transform: translateY(-3px);
+}
+.prod-img-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+.prod-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.prod-card:hover .prod-img-wrap img { transform: scale(1.06); }
+.prod-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.prod-wish {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #fff;
+  border: none;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+.prod-card:hover .prod-wish { opacity: 1; }
+.prod-wish:hover { color: #ef4444; }
+
+.prod-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.prod-cat {
+  font-size: 0.72rem;
+  color: var(--brand-azul);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.prod-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.prod-price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--brand-azul-escuro);
+  margin-top: auto;
+}
+.prod-stock { font-size: 0.75rem; color: #64748b; }
+.prod-stock.low { color: #d97706; }
+
+.btn-add-cart {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+/* =========================================================
+   CTA BANNER
+   ========================================================= */
+.cta-banner {
+  background: linear-gradient(135deg, var(--brand-azul), var(--brand-azul-escuro));
+  color: #fff;
+  border-radius: 20px;
+  padding: 40px 36px;
+  box-shadow: 0 15px 40px rgba(37, 99, 235, 0.3);
+}
+.cta-banner h3 { color: #fff; }
+.cta-banner p { color: rgba(255, 255, 255, 0.85); }

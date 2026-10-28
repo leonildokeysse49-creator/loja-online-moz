@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Loja Online — Compre em Moçambique</title>
-  <meta name="description" content="Loja online multi-categorias em Moçambique. Moda, tecnologia, acessórios e casa. Pague por M-Pesa, e-Mola ou na entrega." />
+  <title>Fashion Key — Compre em Moçambique</title>
+  <meta name="description" content="Fashion Key: A tua loja online multi-categorias em Moçambique. Moda, tecnologia, acessórios e casa." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -36,17 +36,16 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
     <div class="container position-relative">
       
-      <!-- BOTÃO MENU (TELEMÓVEL) -->
       <button class="navbar-toggler border-0 order-first me-2" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <a class="navbar-brand fw-bolder d-flex align-items-center gap-2 me-auto" href="index.html">
-        <span class="brand-mark"><i class="fa-solid fa-bag-shopping"></i></span>
-        <span>Loja <span class="text-primary">Online</span></span>
+      <!-- LOGOTIPO -->
+      <a class="navbar-brand d-flex align-items-center me-auto" href="index.html">
+        <img src="assets/img/logo.png" alt="Fashion Key" class="brand-logo-img" />
       </a>
 
-      <!-- BOTÕES DE AÇÃO (SEMPRE VISÍVEIS NO TELEMÓVEL) -->
+      <!-- BOTÕES DE AÇÃO (TELEMÓVEL) -->
       <div class="d-flex align-items-center gap-2 d-lg-none">
         <a href="conta/login.html" class="btn btn-outline-secondary btn-icon" style="padding: 0.4rem 0.6rem;">
           <i class="fa-regular fa-user"></i>
@@ -67,14 +66,15 @@
           <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
         </ul>
         
-        <form class="d-flex flex-grow-1 mx-lg-4 my-2 my-lg-0" style="max-width: 350px;" role="search" action="pesquisa.html" method="get">
-          <div class="input-group">
-            <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
-            <input class="form-control border-start-0 ps-0" type="search" name="q" placeholder="Pesquisar..." />
+        <!-- BARRA DE PESQUISA PROFISSIONAL -->
+        <form class="d-flex flex-grow-1 mx-lg-4 my-2 my-lg-0 navbar-search" role="search" action="pesquisa.html" method="get">
+          <div class="input-group rounded-pill overflow-hidden border border-2" style="border-color: #e2e8f0 !important;">
+            <span class="input-group-text bg-white border-0 pe-1"><i class="fa-solid fa-magnifying-glass text-primary"></i></span>
+            <input class="form-control border-0 ps-2 shadow-none" type="search" name="q" placeholder="Pesquisar produtos..." style="background-color: #fff; font-size: 0.95rem;" />
           </div>
         </form>
 
-        <!-- BOTÕES DE AÇÃO (NO COMPUTADOR) -->
+        <!-- BOTÕES DE AÇÃO (COMPUTADOR) -->
         <div class="d-none d-lg-flex align-items-center gap-2">
           <div id="navbar-user-area" class="d-flex align-items-center">
             <a href="conta/login.html" class="btn btn-outline-secondary btn-icon">
@@ -191,9 +191,7 @@
         </div>
         <a href="categorias.html" class="btn btn-outline-primary">Ver todas <i class="fa-solid fa-arrow-right ms-1"></i></a>
       </div>
-      <div class="row g-4" id="grelha-categorias">
-        <!-- JS -->
-      </div>
+      <div class="row g-4" id="grelha-categorias"></div>
     </div>
   </section>
 
@@ -218,9 +216,7 @@
         </div>
         <a href="produtos.html" class="btn btn-outline-primary">Ver catálogo <i class="fa-solid fa-arrow-right ms-1"></i></a>
       </div>
-      <div class="row g-4" id="grelha-produtos">
-        <!-- JS -->
-      </div>
+      <div class="row g-4" id="grelha-produtos"></div>
     </div>
   </section>
 
@@ -229,10 +225,7 @@
     <div class="container py-5">
       <div class="row g-4">
         <div class="col-lg-4">
-          <div class="d-flex align-items-center gap-2 mb-3">
-            <span class="brand-mark"><i class="fa-solid fa-bag-shopping"></i></span>
-            <span class="fw-bolder fs-5 text-white">Loja Online</span>
-          </div>
+          <img src="assets/img/logo.png" alt="Fashion Key" style="height: 50px; width: auto;" class="mb-3 bg-white p-2 rounded" />
           <p class="text-white-50 small mb-3">Loja multi-categorias em Moçambique. Preços em MZN. Pagamento por M-Pesa, e-Mola ou na entrega.</p>
           <div class="d-flex gap-2">
             <a href="https://wa.me/258853217149" target="_blank" rel="noopener" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
@@ -269,7 +262,7 @@
       </div>
       <hr class="border-secondary opacity-25 my-4" />
       <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 small text-white-50">
-        <div>© <span id="ano"></span> Loja Online. Todos os direitos reservados.</div>
+        <div>© <span id="ano"></span> <span class="store-name-text">Fashion Key</span>. Todos os direitos reservados.</div>
         <div class="d-flex gap-3">
           <a href="admin/login.html" class="text-decoration-none text-white-50">Admin</a>
         </div>
@@ -277,7 +270,6 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
