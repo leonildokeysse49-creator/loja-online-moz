@@ -8,7 +8,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
   
-  <!-- Teus Scripts -->
+  <!-- Teus Scripts (com ../ porque estamos dentro da pasta admin) -->
   <script src="../assets/js/config.js"></script>
   <script src="../assets/js/firebase.js"></script>
 </head>
@@ -25,7 +25,7 @@
         // Se estiver logado, vai direto para o dashboard
         window.location.href = "dashboard.html";
       } else {
-        // Se não, vai para o login
+        // Se não, vai para o login do admin
         window.location.href = "login.html";
       }
     });
