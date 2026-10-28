@@ -1,4 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt"><head><meta charset="UTF-8"><script src="../assets/js/config.js"></script><script src="../assets/js/utilitarios.js"></script></head><body>
-<script>if(localStorage.getItem("loja_admin_sessao")) window.location.href="dashboard.html"; else window.location.href="login.html";</script>
-</body></html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>A carregar Painel Admin...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  
+  <!-- Teus Scripts (com ../ porque estamos dentro da pasta admin) -->
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/firebase.js"></script>
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center" style="height: 100vh; font-family: sans-serif;">
+  <div class="text-center">
+    <!-- Ícone de loading simples -->
+    <div style="font-size: 3rem; color: #2563eb; margin-bottom: 15px;">⏳</div>
+    <h4 style="color: #0f172a;">A verificar permissões...</h4>
+    <p style="color: #64748b; font-size: 0.9rem;">Aguarda um momento.</p>
+  </div>
+
+  <script>
+    // O Firebase vai verificar se existe uma sessão ativa
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        // Se estiver logado, vai direto para o dashboard
+        window.location.href = "dashboard.html";
+      } else {
+        // Se não, vai para o login do admin
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</body>
+</html>
