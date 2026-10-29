@@ -1,0 +1,233 @@
+/* =========================================================
+   LAYOUT BASE DO ADMIN
+   ========================================================= */
+body.admin-body {
+  background: #f1f5f9;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR (COMPUTADOR) */
+.admin-sidebar {
+  width: 260px;
+  background: #0b2545;
+  color: #fff;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+.admin-sidebar .brand {
+  padding: 24px 20px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.admin-sidebar .brand i { color: var(--brand-azul); }
+
+.admin-nav {
+  padding: 20px 10px;
+  flex: 1;
+  overflow-y: auto;
+}
+.admin-nav-cat {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin: 20px 10px 8px;
+  font-weight: 700;
+}
+.admin-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  color: #cbd5e1;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  transition: all 0.15s ease;
+}
+.admin-nav a:hover { background: rgba(255,255,255,.05); color: #fff; }
+.admin-nav a.active { background: var(--brand-azul); color: #fff; }
+.admin-nav a i { width: 20px; text-align: center; }
+
+/* MAIN CONTENT */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.admin-header {
+  background: #fff;
+  min-height: 70px;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0,0,0,.02);
+}
+.admin-header .page-title { font-size: 1.2rem; font-weight: 700; margin: 0; color: #0f172a; }
+.admin-content { padding: 30px; flex: 1; }
+
+/* CARDS DE ESTATÍSTICA */
+.stat-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.stat-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.stat-icon.azul { background: #eff6ff; color: #2563eb; }
+.stat-icon.verde { background: #f0fdf4; color: #16a34a; }
+.stat-icon.amarelo { background: #fef3c7; color: #d97706; }
+.stat-icon.vermelho { background: #fee2e2; color: #dc2626; }
+.stat-info h3 { font-size: 1.8rem; font-weight: 800; margin: 0; color: #0f172a; line-height: 1.2; }
+.stat-info p { font-size: 0.85rem; color: #64748b; margin: 0; font-weight: 500; }
+
+/* TABELAS DO ADMIN */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.admin-table th, .admin-table td {
+  padding: 14px 20px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+.admin-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: #f8fafc; }
+
+/* FORMULÁRIOS */
+.card form .form-control, .card form .form-select {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+}
+.card form .form-control:focus, .card form .form-select:focus {
+  border-color: var(--brand-azul);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+}
+
+/* =========================================================
+   RESPONSIVIDADE (ADMIN) - MODO TELEMÓVEL OTIMIZADO
+   ========================================================= */
+@media (max-width: 991.98px) {
+  .admin-wrapper { flex-direction: column; }
+  
+  /* Menu Superior Deslizável */
+  .admin-sidebar { 
+    width: 100%; 
+    border-bottom: 2px solid var(--brand-azul); 
+    flex-direction: row; 
+    align-items: center;
+    overflow-x: auto; 
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .admin-sidebar::-webkit-scrollbar { display: none; }
+  
+  .admin-sidebar .brand { 
+    padding: 12px 15px; 
+    border-bottom: none; 
+    border-right: 1px solid rgba(255,255,255,.1);
+    font-size: 1rem;
+  }
+  
+  .admin-nav { 
+    display: flex; 
+    flex-direction: row; 
+    padding: 10px; 
+    gap: 8px; 
+    overflow: visible;
+  }
+  
+  .admin-nav-cat { display: none; } 
+  
+  .admin-nav a { 
+    margin-bottom: 0; 
+    font-size: 0.85rem; 
+    padding: 8px 14px; 
+    background: rgba(255,255,255,0.05);
+    border-radius: 50px;
+    flex-shrink: 0;
+  }
+  .admin-nav a.active { background: var(--brand-azul); }
+  
+  .admin-nav .mt-4 { 
+    margin-top: 0 !important; 
+    padding-top: 0 !important; 
+    border: none !important; 
+    display: flex; 
+    gap: 8px; 
+  }
+  .admin-nav .mt-4 a { padding: 8px 14px; }
+
+  .admin-header { 
+    height: auto; 
+    padding: 15px; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 12px; 
+  }
+  .admin-header .btn { width: 100%; display: flex; justify-content: center; }
+  .admin-content { padding: 15px; }
+  
+  .stat-card { flex-direction: row; text-align: left; gap: 15px; padding: 15px; margin-bottom: 15px; }
+  .stat-icon { width: 45px; height: 45px; font-size: 1.2rem; }
+  .stat-info h3 { font-size: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    border-radius: 12px;
+    box-shadow: inset -10px 0 10px -10px rgba(0,0,0,0.05);
+    -webkit-overflow-scrolling: touch;
+  }
+  .admin-table th, .admin-table td { 
+    padding: 12px; 
+    font-size: 0.85rem; 
+    white-space: nowrap; 
+  }
+  .modal-dialog { margin: 10px; }
+  .modal-content { border-radius: 16px; }
+}

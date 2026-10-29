@@ -1,0 +1,56 @@
+/* =========================================================
+   RESPONSIVIDADE GLOBAL (LOJA E CONTA)
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+  .hero { padding: 40px 0 30px; text-align: center; }
+  .hero-card { margin-top: 30px; }
+  .hero .d-flex { justify-content: center; }
+  
+  .main-navbar .navbar-collapse { 
+    padding: 1rem; 
+    background: #fff; 
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-top: 10px;
+  }
+  .navbar .nav-link { padding: 0.8rem 1rem !important; border-radius: 8px; }
+  .navbar .nav-link:hover { background: #f1f5f9; }
+  
+  /* Conta Layout */
+  .sidebar-conta { position: relative; top: 0; margin-bottom: 20px; }
+  .sidebar-user { display: flex; align-items: center; text-align: left; gap: 15px; padding-bottom: 15px; margin-bottom: 15px; }
+  .sidebar-avatar { margin: 0; width: 50px; height: 50px; font-size: 1.2rem; }
+  .sidebar-nav { display: flex; flex-wrap: wrap; gap: 5px; }
+  .sidebar-nav li { margin-bottom: 0; }
+  .sidebar-nav a { padding: 8px 12px; }
+  .sidebar-nav .mt-2 { margin-top: 0 !important; border-top: none !important; padding-top: 0 !important; }
+  
+  /* Produto e Catálogo */
+  .filtros-card { position: relative; top: 0; margin-bottom: 20px; }
+  .produto-galeria-principal { max-width: 400px; margin: 0 auto 12px; }
+  .produto-galeria-thumbs { justify-content: center; }
+  .produto-info { text-align: center; }
+  .produto-preco-wrap, .produto-acoes { justify-content: center; }
+  .produto-meta { text-align: left; display: inline-block; }
+}
+
+@media (max-width: 575.98px) {
+  .section-title { font-size: 1.4rem; }
+  .cta-banner { padding: 28px 20px; text-align: center; }
+  
+  .top-bar .small { font-size: 0.72rem; justify-content: center; gap: 10px !important; text-align: center; }
+  .top-bar .d-flex { justify-content: center; }
+  
+  .site-footer { text-align: center; }
+  .site-footer .social-btn { margin: 0 auto; }
+  .footer-contact li { justify-content: center; }
+  .footer-contact i { display: none; }
+  
+  /* Carrinho e Checkout */
+  .cart-item { flex-wrap: wrap; text-align: center; }
+  .cart-item-img { width: 80px; height: 80px; margin: 0 auto; }
+  .cart-item-info { width: 100%; margin-top: 10px; }
+  .cart-item-total { width: 100%; text-align: center; margin-top: 10px; }
+  .resumo-card { position: relative; top: 0; }
+}
