@@ -38,8 +38,8 @@
   <script src="../../assets/js/admin.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
-      protegerAdmin();
-      renderizarSidebarAdmin();
+      await inicializarAdmin(); // Desenha o menu PRIMEIRO
+
       const tbody = document.getElementById("tabela-relatorio-stock");
       try {
         const snapshot = await db.collection("products").get();

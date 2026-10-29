@@ -18,9 +18,19 @@
         <div class="card border-0 shadow-sm rounded-4">
           <div class="table-responsive">
             <table class="admin-table">
-              <thead><tr><th>Data</th><th>Cliente</th><th>Assunto</th><th>Estado</th><th class="text-end">Ação</th></tr></thead>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Cliente</th>
+                  <th>Assunto</th>
+                  <th>Estado</th>
+                  <th class="text-end">Ação</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td colspan="5" class="text-center text-muted py-4">Nenhuma mensagem de suporte pendente.</td></tr>
+                <tr>
+                  <td colspan="5" class="text-center text-muted py-4">Nenhuma mensagem de suporte pendente.</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -29,7 +39,11 @@
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="../../assets/js/config.js"></script>
+  <script src="../../assets/js/firebase.js"></script>
   <script src="../../assets/js/dados-demo.js"></script>
   <script src="../../assets/js/utilitarios.js"></script>
   <script src="../../assets/js/encomendas.js"></script>

@@ -38,8 +38,9 @@
   <script src="../../assets/js/admin.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
-      protegerAdmin();
-      renderizarSidebarAdmin();
+      await inicializarAdmin(); // Desenha o menu PRIMEIRO
+      
+      // Só depois vai buscar os dados
       const tbody = document.getElementById("tabela-relatorio-vendas");
       try {
         const snapshot = await db.collection("orders").get();

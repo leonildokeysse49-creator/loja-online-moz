@@ -111,7 +111,7 @@ async function inicializarAdmin() {
     return; 
   }
 
-  await renderizarSidebarAdmin(); // Agora com await porque vai buscar o nome da loja
+  await renderizarSidebarAdmin();
   
   const path = window.location.pathname;
 
@@ -753,14 +753,3 @@ async function inicializarAdminConfigGeral() {
     }
   });
 }
-
-// ==========================================
-// ARRANQUE DA PÁGINA
-// ==========================================
-document.addEventListener("DOMContentLoaded", () => {
-  inicializarAdmin();
-  
-  // BUG CORRIGIDO AQUI: Faltava ligar o formulário de criar funcionário
-  const formNovoFunc = document.getElementById("form-novo-funcionario");
-  if (formNovoFunc) formNovoFunc.addEventListener("submit", criarFuncionario);
-});
