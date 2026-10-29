@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8"><title>Editar Categoria — Admin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Categoria — Fashion Key Admin</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="../../assets/css/style.css">
@@ -16,20 +18,9 @@
         <div class="card border-0 shadow-sm rounded-4 p-4" style="max-width: 800px;">
           <form onsubmit="salvarEdicaoCategoria(event)">
             <input type="hidden" id="cat-id">
-            <div class="mb-3">
-              <label class="form-label fw-bold">Nome da Categoria</label>
-              <input type="text" class="form-control" id="cat-nome" required>
-            </div>
-            <div class="row g-3 mb-3">
-              <div class="col-md-6">
-                <label class="form-label fw-bold">Ícone (Font Awesome)</label>
-                <input type="text" class="form-control" id="cat-icone" required>
-              </div>
-            </div>
-            <div class="mb-4">
-              <label class="form-label fw-bold">Descrição Curta</label>
-              <textarea class="form-control" id="cat-descricao" rows="2"></textarea>
-            </div>
+            <div class="mb-3"><label class="form-label fw-bold">Nome da Categoria</label><input type="text" class="form-control" id="cat-nome" required></div>
+            <div class="row g-3 mb-3"><div class="col-md-6"><label class="form-label fw-bold">Ícone</label><input type="text" class="form-control" id="cat-icone" required></div></div>
+            <div class="mb-4"><label class="form-label fw-bold">Descrição Curta</label><textarea class="form-control" id="cat-descricao" rows="2"></textarea></div>
             <button type="submit" class="btn btn-primary fw-bold"><i class="fa-solid fa-floppy-disk me-2"></i> Atualizar Categoria</button>
             <a href="categorias.html" class="btn btn-light border ms-2">Cancelar</a>
           </form>
@@ -37,7 +28,6 @@
       </div>
     </main>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
