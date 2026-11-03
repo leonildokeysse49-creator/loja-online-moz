@@ -4,7 +4,7 @@
 body.admin-body {
   background: #f1f5f9;
   font-family: 'Inter', sans-serif;
-  overflow-x: hidden; /* Impede que a página inteira faça scroll para o lado */
+  overflow-x: hidden;
 }
 
 .admin-wrapper {
@@ -151,22 +151,20 @@ body.admin-body {
    RESPONSIVIDADE (ADMIN) - MODO TELEMÓVEL OTIMIZADO
    ========================================================= */
 @media (max-width: 991.98px) {
-  /* Empilha o layout principal */
   .admin-wrapper { flex-direction: column; }
   
-  /* TRANSFORMA A SIDEBAR NUMA BARRA DESLIZÁVEL (SWIPE) NO TOPO */
+  /* Menu Superior Deslizável */
   .admin-sidebar { 
     width: 100%; 
-    position: relative; 
     border-bottom: 2px solid var(--brand-azul); 
-    flex-direction: row; /* Coloca tudo lado a lado */
+    flex-direction: row; 
     align-items: center;
-    overflow-x: auto; /* Permite deslizar */
+    overflow-x: auto; 
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Esconde a barra de scroll no Firefox */
+    scrollbar-width: none;
   }
-  .admin-sidebar::-webkit-scrollbar { display: none; } /* Esconde no Chrome/Safari */
+  .admin-sidebar::-webkit-scrollbar { display: none; }
   
   .admin-sidebar .brand { 
     padding: 12px 15px; 
@@ -180,10 +178,9 @@ body.admin-body {
     flex-direction: row; 
     padding: 10px; 
     gap: 8px; 
-    overflow: visible; /* Deixa a sidebar pai controlar o scroll */
+    overflow: visible;
   }
   
-  /* Esconde os títulos "Principal", "Vendas" etc para poupar espaço */
   .admin-nav-cat { display: none; } 
   
   .admin-nav a { 
@@ -191,13 +188,11 @@ body.admin-body {
     font-size: 0.85rem; 
     padding: 8px 14px; 
     background: rgba(255,255,255,0.05);
-    border-radius: 50px; /* Botões redondos tipo app */
+    border-radius: 50px;
     flex-shrink: 0;
   }
-  
   .admin-nav a.active { background: var(--brand-azul); }
   
-  /* Ajusta os botões "Ver Loja" e "Sair" no telemóvel */
   .admin-nav .mt-4 { 
     margin-top: 0 !important; 
     padding-top: 0 !important; 
@@ -207,7 +202,6 @@ body.admin-body {
   }
   .admin-nav .mt-4 a { padding: 8px 14px; }
 
-  /* CABEÇALHO DO CONTEÚDO */
   .admin-header { 
     height: auto; 
     padding: 15px; 
@@ -215,46 +209,25 @@ body.admin-body {
     align-items: flex-start; 
     gap: 12px; 
   }
-  
-  .admin-header .btn {
-    width: 100%; /* Botão fica do tamanho do ecrã */
-    display: flex;
-    justify-content: center;
-  }
-
+  .admin-header .btn { width: 100%; display: flex; justify-content: center; }
   .admin-content { padding: 15px; }
   
-  /* Cards de estatística */
-  .stat-card { 
-    flex-direction: row; 
-    text-align: left; 
-    gap: 15px; 
-    padding: 15px; 
-    margin-bottom: 15px;
-  }
+  .stat-card { flex-direction: row; text-align: left; gap: 15px; padding: 15px; margin-bottom: 15px; }
   .stat-icon { width: 45px; height: 45px; font-size: 1.2rem; }
   .stat-info h3 { font-size: 1.5rem; }
 }
 
 @media (max-width: 768px) {
-  /* TABELAS: Permite arrastar para o lado suavemente */
   .table-responsive {
     border-radius: 12px;
-    box-shadow: inset -10px 0 10px -10px rgba(0,0,0,0.05); /* Sombrinha para indicar que tem mais conteúdo */
+    box-shadow: inset -10px 0 10px -10px rgba(0,0,0,0.05);
     -webkit-overflow-scrolling: touch;
   }
-  
   .admin-table th, .admin-table td { 
     padding: 12px; 
     font-size: 0.85rem; 
-    white-space: nowrap; /* Impede o texto de quebrar e esmagar a tabela */
+    white-space: nowrap; 
   }
-
-  /* MODALS (Janelas pop-up) ajustados */
-  .modal-dialog {
-    margin: 10px;
-  }
-  .modal-content {
-    border-radius: 16px;
-  }
+  .modal-dialog { margin: 10px; }
+  .modal-content { border-radius: 16px; }
 }
