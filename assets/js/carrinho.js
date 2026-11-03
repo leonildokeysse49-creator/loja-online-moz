@@ -38,9 +38,13 @@ function contarItensCarrinho() {
   return lerCarrinho().reduce((s, i) => s + i.quantidade, 0);
 }
 
+// ✅ ATUALIZADO: agora atualiza o badge mobile E o badge desktop
 function atualizarBadgeCarrinho() {
-  const badge = document.getElementById("carrinho-badge");
-  if (badge) badge.textContent = contarItensCarrinho();
+  const qtd = contarItensCarrinho();
+  ["carrinho-badge", "carrinho-badge-desk"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = qtd;
+  });
 }
 
 // Função assíncrona para buscar os dados reais do produto ao Firebase

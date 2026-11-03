@@ -5,12 +5,13 @@ const app = firebase.initializeApp(CONFIG.firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
 
-// Ativar persistência offline (opcional, mas bom para redes lentas)
-db.enablePersistence().catch((err) => {
+// Ativar persistência offline com tratamento de erro seguro
+db.enablePersistence({ synchronizeTabs: true }).catch((err) => {
     if (err.code == 'failed-precondition') {
-        console.log("Persistência falhou: múltiplas abas abertas.");
+        // Isto acontece se já houver abas abertas ou falha de cache.
+        console.warn("Aviso: Persistência offline não pôde ser ativada (múltiplas abas abertas).");
     } else if (err.code == 'unimplemented') {
-        console.log("O navegador não suporta persistência offline.");
+        console.warn("Aviso: O navegador não suporta persistência offline.");
     }
 });
 
